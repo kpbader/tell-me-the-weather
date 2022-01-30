@@ -1,0 +1,79 @@
+:root {
+    --primary: #3399cc;
+    --secondary: silver;
+    --tertiary: white;
+    --fourth: black;
+}
+
+* {
+    font-family: futura;
+}
+
+.header-dashboard {
+    background-color: var(--primary);
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-weight: bold;
+}
+
+.search-column {
+    text-align: center;
+    margin: 30px;
+    padding: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+}
+
+.form-label {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.form-input {
+    width: 50%;
+}
+
+.quick-options {
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 30px;
+    margin: 30px 30px 15px 30px;
+    padding-left: 25px;
+}
+
+
+.btn {
+  font-size: 20px;
+  padding: 5px;
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: var(--fourth);
+  border: 2px solid;
+  background-color: var(--secondary);
+}
+
+.option-btn {
+  font-size: 20px;
+  padding: 5px;
+  width: 75%;
+  margin: 0px 30px 5px 30px;
+  border-radius: 5px;
+  color: var(--fourth);
+  border: 2px solid;
+  background-color: var(--secondary);
+}
+
+.btn:hover {
+    background-color: var(--primary);
+}
+
+.option-btn:hover {
+    background-color: var(--primary);
+}
