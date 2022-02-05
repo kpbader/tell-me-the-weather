@@ -1,15 +1,59 @@
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-    // Use OpenWeather API to retrieve data 
+// // GLOBAL VARIABLES 
+var citySearchFormEl = document.querySelector("#city-searcher");
+var userInputEl = document.querySelector(".form-input");
+// var searchButtonEl = document.querySelector("#results-btn");
+var currentCityEl = document.querySelector(".current-city");
+// var currentDateEl = document.querySelector(".current-date");
+var currentDescriptionEl = document.querySelector(".current-description");
+var currentTempEl = document.querySelector(".current-temp");
+var currentWindEl = document.querySelector(".current-wind");
+var currentHumidityEl = document.querySelector(".current-humidity");
+var currentFeelsLikeEl = document.querySelector(".current-feels-like");
 
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+var currentDateEl = new Date().toLocaleDateString();
 
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
 
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
+function formSubmitHandler(event) {
+  // prevents refresh 
+    event.preventDefault();
+    // get value from input element
+    var city = userInputEl.value.trim();
+    if (city) {
+        findTheWeather(city);
+
+        // clear old content 
+        userInputEl.value = "";
+
+    } else {
+        alert("Please enter a correct city name.")
+    }
+};
+
+// Search button funciton 
+citySearchFormEl.addEventListener("submit", formSubmitHandler);
+
+// pulls data from api 
+function findTheWeather(cityInfo) {
+var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityInfo + '&units=imperial&appid=7d2468859f069e175129ed58c076ee88';
+// make a get request to url
+fetch(requestUrl).then(function(response) {
+  // request was successful
+  if (response.ok) {
+    response.json().then(function(data) {
+      // console.log(data);
+      currentCityEl.textContent = (data.name); 
+      document.querySelector(".current-date").textContent = currentDateEl;
+      currentDescriptionEl.textContent = (data.weather[0].main)
+      currentTempEl.textContent = "Temperature: " + (data.main.temp) + " F°";
+      currentWindEl.textContent = "Wind speed: " + (data.wind.speed) + " mph";
+      currentHumidityEl.textContent = "Humidity: " + (data.main.humidity) + "%";
+      currentFeelsLikeEl.textContent = "Feels like: " + (data.main.feels_like) + " F°";
+
+    });
+  } else {
+    alert("Error");
+  }
+});
+};
+

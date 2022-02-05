@@ -17,39 +17,47 @@
 
     <main class="flex-row justify-space-between">
         <!-- (left) search column start-->
-        <div class="col-12 col-md-4">
+        <div class="col-4">
           <div class="search-column">
             <h3 class="search-column-header">Search by City</h3>
             <form id="city-searcher" class="search-column-body">
                 <label class="form-label" for="city">City name</label>
                 <input name="city-name" id="city-search-input" type="text" autofocus= "true" class="form-input">
-                <button type="submit" class="btn">Get Results</button>
+                <button id="results-btn" class="btn">Get Results</button>
             </form>
           </div>
-        </div>
-
-        <div class="col-12 col-md-4">
-          <div class="quick-options"> 
-            <h2 class="subtitle">Quick options</h2>
-            <div id="city-buttons" class="cities">
-                <button type="submit" class="option-btn">San Francisco</button>
-                <button type="submit" class="option-btn">Boston</button>
-                <button type="submit" class="option-btn">Philadelphia</button>
-                <button type="submit" class="option-btn">Seattle</button>
-                <button type="submit" class="option-btn">New Orleans</button>
-            </div>
-          </div> 
         </div>
         <!-- (left) search column end-->
 
         <!-- results display start -->
-        <div class="col-12 col-md-4">
+        <div class="col-8">
          <div class="results-display">
-            
+            <h2 class="current-city current"></h2>
+            <p class="current-date"></p>
+            <p class="current-description"></p>
+            <p class="current-temp"></p>
+            <p class="current-wind"></p>
+            <p class="current-humidity"></p>
+            <p class="current-feels-like"></p>
          </div>
         </div> 
+
+        <div class="col-4">
+            <div class="quick-options"> 
+              <h2 class="subtitle">Quick options</h2>
+              <div id="city-buttons" class="cities">
+                  <button type="submit" class="option-btn">San Francisco</button>
+                  <button type="submit" class="option-btn">Boston</button>
+                  <button type="submit" class="option-btn">Philadelphia</button>
+                  <button type="submit" class="option-btn">Seattle</button>
+                  <button type="submit" class="option-btn">New Orleans</button>
+              </div>
+            </div> 
+          </div>
         <!-- results display end -->
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
   <script src="./assets/script.js"></script>
 </body>
 </html>
