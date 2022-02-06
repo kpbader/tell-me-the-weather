@@ -21,7 +21,9 @@ function formSubmitHandler(event) {
         findTheWeather(city);
 
         // clear old content 
+        forecastContainer.textContent = "";
         userInputEl.value = "";
+      
 
     } else {
         alert("Please enter a correct city name.")
@@ -40,8 +42,7 @@ fetch(requestUrl).then(function(response) {
   // request was successful
   if (response.ok) {
     response.json().then(function(data) {
-  console.log(data);
-
+    // console.log(data);
       oneCall(data)
     });
   } else {
@@ -68,7 +69,7 @@ function oneCall(coord){
     })
 }
 
-
+// displays current weather in city chosen by user 
 function currentWeather(data, cityName){
   console.log(data)
 
@@ -77,6 +78,7 @@ function currentWeather(data, cityName){
       // icon placement
       var placeIcon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
       currentIconEl.setAttribute("src", placeIcon);
+      currentIconEl.classList.add("current-icon");
       // icon placement end 
       currentDescriptionEl.textContent = (data.weather[0].main);
       currentTempEl.textContent = "Temperature: " + (data.temp) + " F°";
@@ -85,19 +87,19 @@ function currentWeather(data, cityName){
       currentUVEl.textContent = "UV: " + (data.uvi);
 }
 
-// 5 Day Outlook 
+// 5 Day Outlook of city chosen by user 
 function getForecast(forecast){
 
   var forecastHeader =  document.createElement('div')
   var forcastHeading =  document.createElement('h3')
 
   forecastHeader.setAttribute('class', 'col-12');
-  forcastHeading.textContent = "5 Day Forecast: "
+  forcastHeading.textContent = "5 Day Forecast"
 
   forecastHeader.append(forcastHeading);
 
   forecastContainer.append(forecastHeader);
-  console.log(forecast)
+
 
   for (var i = 1; i < forecast.length -2; i++) {
     // create elements 
@@ -124,6 +126,7 @@ function getForecast(forecast){
 
     // set attributes...
     card.setAttribute('class', 'card');
+      card.classList.add('col');
     cardBody.setAttribute('class', 'card-body');
     weatherIconImg.setAttribute('src', placeIcon);
     day.setAttribute('class', 'card-date');
@@ -142,15 +145,14 @@ function getForecast(forecast){
     
     // displays descriptors to cards
     day.textContent = specificDay;
-    degrees.textContent =  "Temperature: " + forecast[i].temp.day + " F°";
+    degrees.textContent =  "Average: " + forecast[i].temp.day + " F°";
     wind.textContent = "Wind: " + forecast[i].wind_speed + " mph";
     humidity.textContent = "Humidity: " + forecast[i].humidity + "%";
 
-    
+
     forecastContainer.append(card)
-    
   }
-}
+};
 
 
 

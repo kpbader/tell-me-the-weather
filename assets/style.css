@@ -38,6 +38,7 @@
 
 header h1 {
     font-weight: bold;
+    font-size: 50px;
 }
 
 .search-column {
@@ -57,15 +58,14 @@ header h1 {
     width: 50%;
 }
 
-.quick-options {
+/* .quick-options {
     text-align: center;
-}
+} */
 
-.subtitle {
+/* .subtitle {
     font-size: 30px;
-    
     padding-left: 25px;
-}
+} */
 
 
 .btn {
@@ -104,8 +104,45 @@ header h1 {
 }
 
 .results-display {
+    text-align: center;
     margin: 30px;
     padding: 10px 0px 10px 20px;
     border: 2px solid;
     border-radius: 10px;
+}
+
+#current-city {
+    font-size: 50px;
+}
+
+.current-icon {
+    height: 75px;
+    width: 75px;
+}
+
+.city-details {
+    font-size: 25px;
+}
+
+.col-12 h3 {
+    text-align: center;
+    font-size: 35px;
+    padding: 10px;
+}
+
+#forecast {
+    margin: 20px;
+}
+
+.card {
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 10px;
+}
+
+.card-body img {
+    height: 75px;
+    width: 75px;
 }
