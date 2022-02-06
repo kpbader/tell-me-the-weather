@@ -7,8 +7,9 @@ var currentIconEl = document.querySelector("#current-icon");
 var currentTempEl = document.querySelector("#current-temp");
 var currentWindEl = document.querySelector("#current-wind");
 var currentHumidityEl = document.querySelector("#current-humidity");
-var  currentUVEl = document.querySelector("#current-uv");
+var currentUVEl = document.querySelector("#current-uv");
 var currentDateEl = new Date().toLocaleDateString();
+var resultsContainerTop = document.querySelector("#results");
 var forecastContainer =  document.getElementById('forecast');
 
 function formSubmitHandler(event) {
@@ -42,13 +43,15 @@ fetch(requestUrl).then(function(response) {
   console.log(data);
 
       oneCall(data)
-    
     });
   } else {
     alert("Error");
   }
 
 });
+
+// reveals 'current weather' container
+resultsContainerTop.classList.add('results-display');
 
 };
 
@@ -84,6 +87,7 @@ function currentWeather(data, cityName){
 
 // 5 Day Outlook 
 function getForecast(forecast){
+
   var forecastHeader =  document.createElement('div')
   var forcastHeading =  document.createElement('h3')
 
@@ -108,6 +112,16 @@ function getForecast(forecast){
     var wind = document.createElement('h5');
     var humidity = document.createElement('h5');
 
+    // to get 5 day dates...
+    var time = forecast[i].dt;
+    var moment = new Date(time * 1000);
+    var months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+    var year = moment.getFullYear();
+    var month = months[moment.getMonth()];
+    var date = moment.getDate();
+    var specificDay = month + '/' + date + '/' + year;
+    // console.log(specificDay);
+
     // set attributes...
     card.setAttribute('class', 'card');
     cardBody.setAttribute('class', 'card-body');
@@ -125,13 +139,14 @@ function getForecast(forecast){
     cardBody.append(wind);
     cardBody.append(humidity);
 
-    var tomorrow = new Date();
     
-    
+    // displays descriptors to cards
+    day.textContent = specificDay;
     degrees.textContent =  "Temperature: " + forecast[i].temp.day + " F°";
     wind.textContent = "Wind: " + forecast[i].wind_speed + " mph";
     humidity.textContent = "Humidity: " + forecast[i].humidity + "%";
 
+    
     forecastContainer.append(card)
     
   }
