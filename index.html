@@ -32,32 +32,34 @@
         <!-- results display start -->
         <div class="col-8">
          <div class="results-display">
-            <h2 class="current-city current"></h2>
-            <p class="current-date"></p>
-            <p class="current-description"></p>
-            <p class="current-temp"></p>
-            <p class="current-wind"></p>
-            <p class="current-humidity"></p>
-            <p class="current-feels-like"></p>
+            <h2 id="current-city"></h2>
+            <img id="current-icon">
+            <p id="current-date" class="city-details"></p>
+            <p id="current-description" class="city-details"></p>
+            <p id="current-temp" class="city-details"></p>
+            <p id="current-wind" class="city-details"></p>
+            <p id="current-humidity" class="city-details"></p>
+            <p id="current-uv" class="city-details"></p>
          </div>
+         <div id="forecast" class="row"></div>
         </div> 
 
-        <div class="col-4">
-            <div class="quick-options"> 
+        <div id="quick-btns" class="col-4">
+            <!-- <div class="quick-options"> 
               <h2 class="subtitle">Quick options</h2>
               <div id="city-buttons" class="cities">
-                  <button type="submit" class="option-btn">San Francisco</button>
-                  <button type="submit" class="option-btn">Boston</button>
-                  <button type="submit" class="option-btn">Philadelphia</button>
-                  <button type="submit" class="option-btn">Seattle</button>
-                  <button type="submit" class="option-btn">New Orleans</button>
+                  <button type="submit" id="sf" class="option-btn">San Francisco</button>
+                  <button type="submit" id="boston" class="option-btn">Boston</button>
+                  <button type="submit" id="philly" class="option-btn">Philadelphia</button>
+                  <button type="submit" id="seattle" class="option-btn">Seattle</button>
+                  <button type="submit" id="nola" class="option-btn">New Orleans</button>
               </div>
-            </div> 
+            </div>  -->
           </div>
         <!-- results display end -->
     </main>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script> -->
   <script src="./assets/script.js"></script>
 </body>
 </html>
