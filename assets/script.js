@@ -11,6 +11,7 @@ var currentUVEl = document.querySelector("#current-uv");
 var currentDateEl = new Date().toLocaleDateString();
 var resultsContainerTop = document.querySelector("#results");
 var forecastContainer =  document.getElementById('forecast');
+var quickBtns = document.querySelector(".option-btn");
 
 function formSubmitHandler(event) {
   // prevents refresh 
@@ -26,14 +27,11 @@ function formSubmitHandler(event) {
         userInputEl.value = "";
 
         // save to local storage 
-        localStorage.setItem(city, "");
+        // var y = localStorage.setItem(city, "");
 
-        function storagePull() {
-          var x = localStorage.getItem(city, "");
-          console.log(x)
-        };
-        storagePull();
         
+        // var x = localStorage.getItem(city);
+        //   console.log(x)
 
     } else {
         alert("Please enter a correct city name.")
@@ -53,10 +51,6 @@ fetch(requestUrl).then(function(response) {
   // request was successful
   if (response.ok) {
     response.json().then(function(data) {
-      if (data.uvi > 2) {
-        currentUVEl.classList.add('green');
-      }
-      // else if (data.uvi < 3) {}
     // console.log(data);
       oneCall(data)
     });
@@ -100,6 +94,10 @@ function currentWeather(data, cityName){
       currentWindEl.textContent = "Wind speed: " + (data.wind_speed) + " mph";
       currentHumidityEl.textContent = "Humidity: " + (data.humidity) + "%";
       currentUVEl.textContent = "UV: " + (data.uvi);
+
+      if ((data.uvi).value > 2) {
+        currentUVEl.classList.add('green');
+      }
 }
 
 // 5 Day Outlook of city chosen by user 
@@ -169,14 +167,25 @@ function getForecast(forecast){
   }
 };
 
-// local storage + buttons/quick options....
 
+// buttons/quick options....
 
-
-
-
-// function quickCity() {
+function quickCity(event) {
   
+    // get the language attribute from the clicked element
+    var quickSelect = event.target.getAttribute("data-language");
+  
+    if (quickSelect) {
+      findTheWeather(quickSelect);
+  
+      // // clear old content
+      forecastContainer.textContent = "";
+    }
+  };
+quickBtns.addEventListener("click", quickCity);
+
+
+
 //   var quickCity = localStorage.getItem(city, "");
 
 //  // create a link for each city
@@ -193,4 +202,3 @@ function getForecast(forecast){
 
 //   // append container to the dom
 //   repoContainerEl.appendChild(repoEl);
-// };
