@@ -15,6 +15,7 @@ var forecastContainer =  document.getElementById('forecast');
 function formSubmitHandler(event) {
   // prevents refresh 
     event.preventDefault();
+
     // get value from input element
     var city = userInputEl.value.trim();
     if (city) {
@@ -23,11 +24,21 @@ function formSubmitHandler(event) {
         // clear old content 
         forecastContainer.textContent = "";
         userInputEl.value = "";
-      
+
+        // save to local storage 
+        localStorage.setItem(city, "");
+
+        function storagePull() {
+          var x = localStorage.getItem(city, "");
+          console.log(x)
+        };
+        storagePull();
+        
 
     } else {
         alert("Please enter a correct city name.")
     }
+     
 };
 
 // Search button funciton 
@@ -42,6 +53,10 @@ fetch(requestUrl).then(function(response) {
   // request was successful
   if (response.ok) {
     response.json().then(function(data) {
+      if (data.uvi > 2) {
+        currentUVEl.classList.add('green');
+      }
+      // else if (data.uvi < 3) {}
     // console.log(data);
       oneCall(data)
     });
@@ -154,5 +169,28 @@ function getForecast(forecast){
   }
 };
 
+// local storage + buttons/quick options....
 
 
+
+
+
+// function quickCity() {
+  
+//   var quickCity = localStorage.getItem(city, "");
+
+//  // create a link for each city
+//  var cityBtnEl = document.createElement("button");
+//  cityBtnEl.classList = "list-item flex-row justify-space-between align-center";
+//  cityBtnEl.setAttribute("href", "./single-repo.html?repo=" + repoName);
+
+//  // create a span element to hold repository name
+//  var titleEl = document.createElement("span");
+//  titleEl.textContent = repoName;
+
+//  // append to container
+//  repoEl.appendChild(titleEl);
+
+//   // append container to the dom
+//   repoContainerEl.appendChild(repoEl);
+// };
