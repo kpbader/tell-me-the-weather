@@ -11,7 +11,7 @@ var currentUVEl = document.querySelector("#current-uv");
 var currentDateEl = new Date().toLocaleDateString();
 var resultsContainerTop = document.querySelector("#results");
 var forecastContainer =  document.getElementById('forecast');
-var quickBtns = document.querySelector(".option-btn");
+var quickBtns = document.querySelector("#city-buttons");
 
 function formSubmitHandler(event) {
   // prevents refresh 
@@ -93,11 +93,24 @@ function currentWeather(data, cityName){
       currentTempEl.textContent = "Temperature: " + (data.temp) + " F°";
       currentWindEl.textContent = "Wind speed: " + (data.wind_speed) + " mph";
       currentHumidityEl.textContent = "Humidity: " + (data.humidity) + "%";
-      currentUVEl.textContent = "UV: " + (data.uvi);
+      currentUVEl.textContent = "UVI: " + (data.uvi);
 
-      if ((data.uvi).value > 2) {
+      // color code UV index 
+    var parseUVI = parseInt(data.uvi);
+    console.log(parseUVI);
+     if (parseUVI <= 2) {
+      currentUVEl.classList.remove('red');
+      currentUVEl.classList.remove('orange');
         currentUVEl.classList.add('green');
-      }
+     } else if (parseUVI <= 7) {
+       currentUVEl.classList.remove('green');
+       currentUVEl.classList.remove('red');
+       currentUVEl.classList.add('orange');
+     } else if (parseUVI <= 10) {
+      currentUVEl.classList.remove('green');
+      currentUVEl.classList.remove('orange');
+      currentUVEl.classList.add('red');
+     }
 }
 
 // 5 Day Outlook of city chosen by user 
