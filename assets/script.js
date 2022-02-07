@@ -27,7 +27,7 @@ function formSubmitHandler(event) {
         userInputEl.value = "";
 
         // save to local storage 
-        // var y = localStorage.setItem(city, "");
+        localStorage.setItem(city, "");
 
         
         // var x = localStorage.getItem(city);
@@ -36,7 +36,6 @@ function formSubmitHandler(event) {
     } else {
         alert("Please enter a correct city name.")
     }
-     
 };
 
 // Search button funciton 
@@ -101,7 +100,7 @@ function currentWeather(data, cityName){
      if (parseUVI <= 2) {
       currentUVEl.classList.remove('red');
       currentUVEl.classList.remove('orange');
-        currentUVEl.classList.add('green');
+      currentUVEl.classList.add('green');
      } else if (parseUVI <= 7) {
        currentUVEl.classList.remove('green');
        currentUVEl.classList.remove('red');
@@ -123,9 +122,7 @@ function getForecast(forecast){
   forcastHeading.textContent = "5 Day Forecast"
 
   forecastHeader.append(forcastHeading);
-
   forecastContainer.append(forecastHeader);
-
 
   for (var i = 1; i < forecast.length -2; i++) {
     // create elements 
@@ -167,7 +164,6 @@ function getForecast(forecast){
     cardBody.append(degrees);
     cardBody.append(wind);
     cardBody.append(humidity);
-
     
     // displays descriptors to cards
     day.textContent = specificDay;
@@ -175,22 +171,18 @@ function getForecast(forecast){
     wind.textContent = "Wind: " + forecast[i].wind_speed + " mph";
     humidity.textContent = "Humidity: " + forecast[i].humidity + "%";
 
-
     forecastContainer.append(card)
   }
 };
 
 
 // buttons/quick options....
-
 function quickCity(event) {
-  
     // get the language attribute from the clicked element
     var quickSelect = event.target.getAttribute("data-language");
   
     if (quickSelect) {
       findTheWeather(quickSelect);
-  
       // // clear old content
       forecastContainer.textContent = "";
     }
@@ -199,19 +191,4 @@ quickBtns.addEventListener("click", quickCity);
 
 
 
-//   var quickCity = localStorage.getItem(city, "");
 
-//  // create a link for each city
-//  var cityBtnEl = document.createElement("button");
-//  cityBtnEl.classList = "list-item flex-row justify-space-between align-center";
-//  cityBtnEl.setAttribute("href", "./single-repo.html?repo=" + repoName);
-
-//  // create a span element to hold repository name
-//  var titleEl = document.createElement("span");
-//  titleEl.textContent = repoName;
-
-//  // append to container
-//  repoEl.appendChild(titleEl);
-
-//   // append container to the dom
-//   repoContainerEl.appendChild(repoEl);
