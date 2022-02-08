@@ -43,7 +43,7 @@ citySearchFormEl.addEventListener("submit", formSubmitHandler);
 
 // pulls data from api 
 function findTheWeather(cityInfo) {
-var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityInfo + '&units=imperial&appid=7d2468859f069e175129ed58c076ee88';
+var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInfo + '&units=imperial&appid=7d2468859f069e175129ed58c076ee88';
 
 // make a get request to url
 fetch(requestUrl).then(function(response) {
